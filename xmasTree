@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int d; cout << "Enter the dimensions: "; cin >> d;
+	int c1 = 0, c2 = 0;
+
+	while (c1 < d) {
+		for (int i = 0; i <= (d - c1); i++)
+			cout << " ";
+		for (int j = 0; j <= c1; j++)
+			cout << "* ";
+		cout << "\n";
+		c1++;
+	}
+	while (c2 < (d / 3)) {
+		for (int x = 0; x <= (d*4/5); x++)
+			cout << " ";
+		for (int y = 0; y <= (d / 4); y++)
+			cout << "* ";
+		cout << "\n";
+		c2++;
+	}
+
+	system("pause>nul");
+	return 0;
+}
