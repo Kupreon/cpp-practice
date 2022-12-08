@@ -2,9 +2,13 @@
 using namespace std;
 
 int main() {
-	int d; cout << "Enter the dimensions: "; cin >> d;
+	int d; 
+	do {
+	cout << "Enter the dimensions: "; cin >> d;
+	} while (d < 8);
+	
 	int c1 = 0, c2 = 0;
-
+	
 	while (c1 < d) {
 		for (int i = 0; i <= (d - c1); i++)
 			cout << " ";
