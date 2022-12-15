@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int digitCounter(int n) {
+	int counter = 0;
+	while (n > 0) {
+		n /= 10;
+		counter++;
+	}
+	return counter;
+}
+bool oddNumOfDigits(int n) {
+	if (digitCounter(n) / 2 == 0)
+		return false;
+	return true;
+}
+bool isPrime(int n) {
+	for (int i = 2; i < n; i++)
+		if (n % i == 0)
+			return false;
+	return true;
+}
+int main() {
+	srand(time(NULL));
+	int array[100];
+	int temp = 0, primeCounter = 0;
+	
+	for (int i = 0; i <= 99; i++) {
+		do {
+			temp = rand() % 100000 + 1;
+		} while (digitCounter(temp) % 2 == 0);
+		array[i] = temp;
+		cout << i+1 << ". " << array[i] << "\n";
+		if (isPrime(temp) == true)
+			primeCounter++;
+	}
+
+	cout << "\n" << primeCounter << "% of the numbers in this array are prime.";
+
+	system("pause>nul");
+	return 0;
+}
