@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+bool isPrime(int n) {
+	for (int i = 2; i < n; i++)
+		if (n % i == 0)
+			return false;
+	return true;
+}
+int main() {
+	int num;
+	do {
+		cout << "Enter an even number greater than 2: "; cin >> num;
+
+		if (num <= 2)
+			cout << "The number You entered is too small. \n";
+		else if (num % 2 != 0)
+			cout << "You entered an odd number. \n";
+		else
+			for (int i = 1, j = num - 1; i < num && j > 2; i++, j--)
+				if (isPrime(i) == true && i != 1 && isPrime(j) == true && i + j == num)
+					cout << i << " + " << j << " = " << num << "\n";
+
+		cout << "\n";
+	} while (num > 2 && num % 2 == 0);
+
+
+
+	system("pause>nul");
+	return 0;
+}
