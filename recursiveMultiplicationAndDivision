@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void input(int &num1, int &num2) {
+	cout << "Enter the first number: "; cin >> num1;
+	cout << "Emter the second numbe: "; cin >> num2;
+}
+void multiplication(int &num1, int &num2, int &newNum, int counter = 0) {
+	newNum += num1;
+	counter++;
+	if (counter < num2) 
+		multiplication(num1, num2, newNum, counter);
+}
+void printMulti(int &num1, int &num2, int &newNum){
+	cout << num1 << " * " << num2 << " = " << newNum << '\n';
+}
+void division(int& num1, int& num2, int &newNum, int counter=0) {
+	newNum -= num2;
+	if (newNum >= num2) {
+		division(num1, num2, newNum, counter);
+	    counter++;
+	}
+	else
+		newNum = counter;
+}
+void printDiv(int &num1, int &num2, int &newNum ) {
+	cout << num1 << " / " << num2 << " = " << newNum;
+}
+void main() {
+	int num1 = 0, num2 = 0, newNum = 0;
+	input(num1, num2);
+	multiplication(num1, num2, newNum);
+	printMulti(num1, num2, newNum);
+	newNum = num1;
+	division(num1, num2, newNum);
+	printDiv(num1, num2, newNum);
+
+	system("pause>nul");
+}
