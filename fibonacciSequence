@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+void input(int &size) {
+	cout << "Enter the size of the sequence: "; cin >> size;
+}
+void fibonacci(int& size, int pSequence[], int counter = 0, int num1 = 0, int num2 = 1) {
+	if (counter < size) {
+	    pSequence[counter] = num1 + num2;
+		counter++;
+		num1 = num1 + num2;
+		num2 = num1 - num2;
+		fibonacci(size, pSequence, counter, num1, num2);
+	}
+}
+void print(int size, int pSequence[], int counter = 0) {
+	if (counter < size) {
+		cout << pSequence[counter] << '\n';
+		counter++;
+		print(size, pSequence, counter);
+	}
+}
+void main() {
+	int size = 0;
+	input(size);
+	int *pSequence;
+	pSequence = new int [size];
+	fibonacci(size, pSequence);
+	print(size, pSequence);
+	
+	delete[] pSequence;
+	system("pause>nul");
+}
