@@ -4,7 +4,7 @@ using namespace std;
 //Fibonacci sequence created using recursion and a dynamic array.
 
 void input(int &size) {
-	cout << "Enter the size of the sequence: "; cin >> size;
+	cout << "Enter the size of the Fibonacci sequence: "; cin >> size;
 }
 void fibonacci(int& size, int pSequence[], int counter = 0, int num1 = 0, int num2 = 1) {
 	if (counter < size) {
