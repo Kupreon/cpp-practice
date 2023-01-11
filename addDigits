@@ -11,7 +11,7 @@ void scan(int &num, int temp = 1) {
 	} while (temp > 0);
 }
 void print(int num) {
-	cout << "The number made up of the entered digits: " << num;
+	cout << "The number made up of the entered digits is: " << num;
 }
 void main() {
 	int num = 0;
