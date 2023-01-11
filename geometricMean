@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void scan(float &n) {
+	cout << "Enter N: "; cin >> n;
+}
+void calculation(float n, float &a) {
+	for (int i = 1; i <= n; i++) {
+		if (i % 2 != 0 && i % 5 != 0)
+			a *= float(i);
+	}
+}
+void print(float &n, float &a) {
+	cout << "The geometric mean is: " << float(int(pow(a, 1/n) * 100)) / 100;
+}
+void main() {
+	float n, a = 1.0;
+	scan(n);
+	calculation(n, a);
+	print(n, a);
+
+	system("pause>nul");
+}
