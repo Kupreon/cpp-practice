@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+void scan(int& n) {
+	cout << "Enter N: "; cin >> n;
+}
+int factorial(int n, int f = 1) {
+	while (n > 0) {
+		f *= n;
+		n--;
+	}
+	return f;
+}
+int sum(int n, int s = 0) {
+	for (int i = 0; i <= n; i++) {
+		if (i % 2 != 0)
+			s += factorial(i);
+	}
+	return s;
+}
+void print(int n) {
+	cout << "The sum of factorials in range [1,N] is : " << sum(n);
+}
+void main() {
+	int n;
+	scan(n);
+	print(n);
+
+	system("pause>nul");
+}
