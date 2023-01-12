@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+void scan(int& a) {
+	cout << "Enter a number A (larger than 100k): "; cin >> a;
+	if (a < 100000) {
+		cout << "The number you entered is too small! \n";
+		scan(a);
+	}
+}
+int numB(int a, int b = 0) {
+	while (a > 0) {
+		if (a % 2 != 0) {
+			b *= 10;
+			b += a % 10;
+		}
+		a /= 10;
+	}
+	return b;
+}
+void print(int a) {
+	cout << "Number B is: " << numB(a);
+}
+void main() {
+	int a;
+	scan(a);
+	print(a);
+
+	system("pause>nul");
+}
