@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+void scan(int &num) {
+	cout << "Enter a natural number: "; cin >> num;
+	if (num < 1){
+		cout << "The number you entered isn't natural! \n";
+		scan(num);
+	}
+}
+int digitCounter(int n, int counter = 0) {
+	while (n > 0) {
+		n /= 10;
+		counter++;
+	}
+	return counter;
+}
+int firstDigit(int n) {
+	while (n > 9)
+		n /= 10;
+	return n;
+}
+int lastDigit(int n) {
+	return n % 10;
+}
+int middleDigit(int n, int counter = 0) {
+	while (counter <= digitCounter(n) / 2) {
+		n /= 10;
+		counter++;
+	}
+	return n % 10;
+}
+int reversedDigits(int n, int r = 0) {
+	while (n > 0) {
+		r *= 10;
+		r += n % 10;
+		n /= 10;
+	}
+	return r;
+}
+void print(int num) {
+	cout << "The number of digits is: " << digitCounter(num) << endl;
+	cout << "The first digit is: " << firstDigit(num) << endl;
+	cout << "The middle digit is: " << middleDigit(num) << endl;
+	cout << "The last digit is: " << lastDigit(num) << endl;
+	cout << "The number in reverse is: " << reversedDigits(num) << endl;
+}
+void main() {
+	int num;
+	scan(num);
+	print(num);
+
+	system("pause>nul");
+}
