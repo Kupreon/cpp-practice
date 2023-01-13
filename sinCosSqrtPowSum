@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void scan(double &x, int &m) {
+	cout << "Enter x: "; cin >> x;
+	cout << "Enter m: "; cin >> m;
+}
+void sinus(double x, int m, double &s) {
+	for (double i = 1; i <= m; i++) 
+		s += i / (sin(x / i) + x);
+}
+void cosinus(double x, int m, double &s) {
+	for (double i = 1; i <= m; i++)
+		s += i / (cos(x / i) + x);
+}
+void squareRoot(double x, int m, double &s) {
+	for (double i = 1; i <= m; i++)
+		s += i / (sqrt(x / i) + x);
+}
+void square(double x, int m, double &s) {
+	for (double i = 1; i <= m; i++)
+		s += i / (pow((x / i), 2) + x);
+}
+void choice(double x, int m, double &s ,char c = 'a') {
+	cout << "Choose sin(s), cos(c), square root(q) or square(p): "; cin >> c;
+	switch (c) {
+		case 's':
+			sinus(x, m, s);
+			break;
+		case 'c':
+			cosinus(x, m, s);
+			break;
+		case 'q':
+			squareRoot(x, m, s);
+			break;
+		case 'p':
+			square(x, m, s);
+			break;
+		default:
+			cout << "\n Mozete unijeti samo s, c ,q ili p! \n \n";
+			choice(x, m, s, c);
+			break;
+    }
+}
+void print(double s) {
+	cout << "The sum equals to: " << s;
+}
+void main() {
+	double x, s = 0;
+	int m;
+	scan(x, m);
+	choice(x, m, s);
+	print(s);
+
+	system("pause>nul");
+}
