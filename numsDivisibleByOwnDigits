@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+void inputX(int& x) {
+	cout << "Enter X: "; cin >> x;
+	if (x < 10 || x>6000) {
+		cout << "X has to be between 10 and 6000! \n";
+		inputX(x);
+	}
+}
+void inputY(int& y, int x) {
+	cout << "Enter Y: "; cin >> y;
+	if (y < 10 || y>6000) {
+		cout << "Y has to be between 10 and 6000! \n";
+		inputY(y, x);
+	}
+	if (y < x) {
+		cout << "Y has to be larger than X! \n";
+		inputY(y, x);
+	}
+}
+bool check(int num) {
+	int temp = num;
+	int digit;
+	while (temp > 0) {
+		digit = temp % 10;
+		if (digit == 0)
+			return false;
+		else if(num % digit != 0) {
+			return false;
+		}
+		else if (temp > 9)
+			temp /= 10;
+		else
+			return true;
+	}
+}
+void print(int x, int y) {
+	for (int i = x; i <= y; i++) 
+		if (check(i) == true)
+			cout << i << '\n';
+}
+void main() {
+	int x, y;
+	inputX(x);
+	inputY(y, x);
+	print(x, y);
+
+	system("pause>nul");
+}
