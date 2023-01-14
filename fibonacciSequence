@@ -31,5 +31,6 @@ void main() {
 	print(size, pSequence);
 	
 	delete[] pSequence;
+	pSequence = nullptr;
 	system("pause>nul");
 }
