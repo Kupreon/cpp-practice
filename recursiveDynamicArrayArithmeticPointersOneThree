@@ -40,7 +40,6 @@ void main() {
 	fillSum(pArray, n, s);
 	printSum(s);
 
-
 	delete[] pArray;
 	pArray = nullptr;
 	system("pause>nul");
