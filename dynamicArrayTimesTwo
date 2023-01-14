@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void inputSize(int& size) {
+	cout << "Enter the size of the array: "; cin >> size;
+}
+void fillArray(int *pArray, int size, int i = 2) {
+	*(pArray + i) = *(pArray + (i - 1)) * 2;
+	i++;
+	if (i <= size)
+		fillArray(pArray, size, i);
+}
+void printArray(int* pArray, int size) {
+	for (int i = 1; i <= size; i++)
+		cout << *(pArray + i) << '\n';
+}
+void inputNum(int& num) {
+	cout << "Enter a number which you want to check: "; cin >> num;
+}
+void check(int* pArray, int num, int size, int i = 1) {
+	if (*(pArray + i) == num)
+		cout << "The number you entered is in the array!";
+	else if (i < size) {
+		i++;
+		check(pArray, num, size, i);
+	}
+	else
+		cout << "The num you entered isnt in the array!";
+}
+void main() {
+	int size, num;
+	inputSize(size);
+	int* pArray = new int[size + 1];
+	*(pArray + 1) = 2;
+	fillArray(pArray, size);
+	printArray(pArray, size);
+	inputNum(num);
+	check(pArray, num, size);
+
+	delete[] pArray;
+	pArray = nullptr;
+	system("pause>nul");
+}
