@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void input(int& n) {
+	cout << "Enter the size of the array: "; cin >> n;
+}
+void fillArray(int* pArray, int& n, int i = 1) {
+	*(pArray + i) = pow(i, 3);
+	if (*(pArray + i) < 0)
+		n = i;
+	else if (i < n - 1) {
+		i++;
+		fillArray(pArray, n, i);
+	}
+}
+void printArray(int* pArray, int n, int i = 0) {
+	cout << *(pArray + i) << '\n';
+	if (i < n - 1) {
+		i++;
+		printArray(pArray, n, i);
+	}
+}
+void main() {
+	int n;
+	input(n);
+	int* pArray = new int[n];
+	*(pArray + 0) = 2;
+	fillArray(pArray, n);
+	printArray(pArray, n);
+
+	delete[] pArray;
+	pArray = nullptr;
+	system("pause>nul");
+}
