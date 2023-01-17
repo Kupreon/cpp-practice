@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+ void throwing(int dice1, int dice2, int dice3, int counter = 0, int same = 0) {
+	dice1 = rand() % 6 + 1;
+	dice2 = rand() % 6 + 1;
+	dice3 = rand() % 6 + 1;
+	counter++;
+	cout << counter << ". \t" << dice1 << '\t' << dice2 << '\t' << dice3 << '\n';
+
+	if (dice1 == dice2 && dice2 == dice3) 
+		same++;
+	
+	if (same >= 2) {
+		cout << "The dice was thrown " << counter << " times before getting the same number on all 3 dice twice.";
+		return;
+	}
+	else
+		throwing(dice1, dice2, dice3, counter, same);
+}
+void main() {
+	srand(time(NULL));
+	int dice1= 0, dice2 = 0, dice3 = 0;
+	throwing(dice1, dice2, dice3);
+
+
+	system("pause>nul");
+}
