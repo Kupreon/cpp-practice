@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+struct car {
+	string* name;
+	int* power;
+	int* engineSize;
+	car() {
+		name = new string;
+		power = new int;
+		engineSize = new int;
+	}
+	~car() {
+		delete name;
+		name = nullptr;
+
+		delete power;
+		power = nullptr;
+		
+		delete engineSize;
+		engineSize = nullptr;
+	}
+};
+void size(int& s) {
+	cout << "How many cars do you want to compare? "; cin >> s;
+}
+void input(car* pArray, int s) {
+	for (int i = 0; i < s; i++) {
+		cout << "Enter the name of the " << i + 1 << "# car: "; cin >> *(pArray + i)->name;
+		cout << "Enter the power of the " << i + 1 << "# car: "; cin >> *(pArray + i)->power;
+		cout << "Enter the engine size(cc) of the " << i + 1 << "# car: "; cin >> *(pArray + i)->engineSize;
+	}
+}
+void print(car* pArray, int s) {
+	for (int i = 0; i < s; i++) {
+		cout << "The name of the " << i + 1 << "# car is " << *(pArray + i)->name << '\n';
+		cout << "The power of the " << i + 1 << "# car is " << *(pArray + i)->power << '\n';
+		cout << "The engine size(cc) of the " << i + 1 << "# car is " << *(pArray + i)->engineSize << '\n';
+		cout << '\n';
+	}
+}
+void comparison(car* pArray, int s) {
+	int max = *(pArray + 0)->power;
+	int strongest = 0;
+
+	for (int i = 0; i < s; i++) {
+		if (*(pArray + i)->power > max) {
+			max = *(pArray + i)->power;
+			strongest = i;
+		}
+	}
+	cout << "\n The most powerful car is the " << *(pArray + strongest)->name << " and it has " << max << " horse power.";
+}
+int main() {
+	int s;
+	size(s);
+	car* pArray = new car[s];
+	input(pArray, s);
+	system("cls");
+	print(pArray, s);
+	comparison(pArray, s);
+
+	delete[] pArray;
+	pArray = nullptr;
+	system("pause>nul");
+	return 0;
+}
