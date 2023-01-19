@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+struct footballer {
+	int* year;
+	int* number;
+	int* goals;
+
+	footballer() {
+		year = new int;
+		number = new int;
+		goals = new int;
+	}
+	~footballer() {
+		delete year;
+		year = nullptr;
+		delete number;
+		number = nullptr;
+		delete goals;
+		goals = nullptr;
+	}
+};
+void input(int& teams, int& players) {
+	cout << "Enter the number of teams: "; cin >> teams;
+	cout << "Enter the number of players per team: "; cin >> players;
+}
+void fillArray(footballer**& pArray, int teams, int players) {
+	for(int i = 0; i < teams; i++)
+		for (int j = 0; j < players; j++) {
+			*(*(pArray + i) + j)->year = 1980 + rand() % ((2000 + 1) - 1980);
+			*(*(pArray + i) + j)->number = rand() % 30 + 1;
+			*(*(pArray + i) + j)->goals = rand() % 5 + 1;
+		}
+}
+void printArray(footballer**& pArray, int teams, int players) {
+	for (int i = 0; i < teams; i++) {
+		for (int j = 0; j < players; j++) {
+			cout << "The player was born in : " << *(*(pArray + i) + j)->year << '\t';
+			cout << "The players number is: " << *(*(pArray + i) + j)->number << '\t';
+			cout << "The player scored: " << *(*(pArray + i) + j)->goals << " goals" << '\n';
+		}
+		cout << '\n';
+	}
+}
+void deallocation(footballer**& pArray, int teams) {
+	for (int i = 0; i <= teams; i++)
+		delete[] * (pArray + 1);
+	delete[] pArray;
+	pArray = nullptr;
+}
+int main() {
+	srand(time(NULL));
+	int teams, players;
+	input(teams, players);
+	footballer** pArray = new footballer * [teams];
+	for (int i = 0; i < teams; i++)
+		*(pArray + i) = new footballer[players];
+	fillArray(pArray, teams, players);
+	printArray(pArray, teams, players);
+	
+	deallocation(pArray, teams);
+	system("pause>nul");
+	return 0;
+}
