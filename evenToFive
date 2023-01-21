@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+bool even(int num) {
+	if (num % 2 == 0)
+		return true;
+	return false;
+}
+int main() {
+	int n, temp = 0, num;
+	cout << "Enter a number: "; cin >> n;
+	num = n;
+	system("cls");
+	while (n > 0) {
+		temp *= 10;
+		if (even(n) == true)
+			temp += 5;
+		else
+			temp += n % 10;
+		n /= 10;
+	}
+	n = 0;
+	while (temp > 0) {
+		n *= 10;
+		n += temp % 10;
+		temp /= 10;
+	}
+	cout << "The number you've entered was " << num << " and when all the even digits are converted to 5 you get " << n;
+
+	system("pause>nul");
+	return 0;
+}
