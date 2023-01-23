@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+void main() {
+	srand(time(NULL));
+
+	int n, temp = 0, one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
+	do {
+		cout << "How many times do you want to throw the dice? "; cin >> n;
+		if (n <= 10 || n >= 1000)
+			cout << "You have to enter a number between 10 and 1000. \n";
+	} while (n <= 10 || n >= 1000);
+
+	for (int i = 1; i <= n; i++) {
+		temp = rand() % 6 + 1;
+		cout << temp << "\n";
+		switch (temp) {
+		case 1: one++; break;
+		case 2: two++; break;
+		case 3: three++; break;
+		case 4: four++; break;
+		case 5: five++; break;
+		case 6: six++; break;
+		}
+	}
+
+	cout << "One was rolled " << float(one) / n * 100 << "% of the time. \n";
+	cout << "Two was rolled " << float(two) / n * 100 << "% of the time. \n";
+	cout << "Three was rolled " << float(three) / n * 100 << "% of the time. \n";
+	cout << "Four was rolled " << float(four) / n * 100 << "% of the time. \n";
+	cout << "Five was rolled " << float(five) / n * 100 << "% of the time. \n";
+	cout << "Six was rolled " << float(six) / n * 100 << "% of the time. \n";
+
+	system("pause>nul");
+}
