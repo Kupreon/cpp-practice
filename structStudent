@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+struct student {
+	int* index;
+	int* year;
+	float* averageGrade;
+	student() {
+		index = new int;
+		year = new int;
+		averageGrade = new float;
+	}
+	~student() {
+		delete index;
+		index = nullptr;
+		delete year;
+		year = nullptr;
+		delete averageGrade;
+		averageGrade = nullptr;
+	}
+};
+
+void input(int& size) {
+	cout << "How many students are in the University? "; cin >> size;
+}
+void fillArray(student* pArray, int size, int i = 0) {
+	if (i < size) {
+		*(pArray + i)->index = rand() % 9999 + 220000;
+		*(pArray + i)->year = rand() % 4 + 1;
+		*(pArray + i)->averageGrade = float((rand() % 50 + 1)) / 10 + 5;
+		i++;
+		fillArray(pArray, size, i);
+	}
+	else
+		return;
+}
+void printArray(student* pArray, int size, int i = 0) {
+	if (i < size) {
+		cout << "Index: IB" << *(pArray + i)->index;
+		cout << "\t Year: " << *(pArray + i)->year;
+		cout << "\t Average grade:  " << *(pArray + i)->averageGrade;
+		cout << '\n';
+		i++;
+		printArray(pArray, size, i);
+	}
+	else
+		return;
+}
+void stats(student* pArray, int size) {
+	int failing = 0, excellent = 0, first = 0, second = 0, third = 0, fourth = 0;
+
+	for (int i = 0; i < size; i++) {
+		switch (*(pArray + i)->year) {
+		case 1: first++; break;
+		case 2: second++; break;
+		case 3: third++; break;
+		case 4: fourth++; break;
+		}
+		if (*(pArray + i)->averageGrade >= 9.5)
+			excellent++;
+		else if (*(pArray + i)->averageGrade < 5.5)
+			failing++;
+	}
+
+	cout << '\n';
+	cout << failing << " or " << float(failing) / size * 100 << "% of the students are failing. \n";
+	cout << excellent << " or " << float(excellent) / size * 100 << "% of the students have excellent grades. \n";
+	cout << "\n Number of students per year: \n";
+	cout << "I   year: " << first << "(" << float(first) / size * 100 << "%) \n";
+	cout << "II  year: " << second << "(" << float(second) / size * 100 << "%) \n";
+	cout << "III year: " << third << "(" << float(third) / size * 100 << "%) \n";
+	cout << "IV  year: " << fourth << "(" << float(fourth) / size * 100 << "%)";
+}
+void main() {
+	srand(time(NULL));
+	int size;
+	input(size);
+	student* pArray = new student[size];
+	fillArray(pArray, size);
+	printArray(pArray, size);
+	stats(pArray, size);
+
+	delete[] pArray;
+	pArray = nullptr;
+	system("pause>nul");
+}
