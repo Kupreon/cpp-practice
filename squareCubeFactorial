@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+struct num {
+	int* square;
+	int* cube;
+	int* factorial;
+	num() {
+		square = new int;
+		cube = new int;
+		factorial = new int;
+	}
+	~num() {
+		delete square;
+		square = nullptr;
+		delete cube;
+		cube = nullptr;
+		delete factorial;
+		factorial = nullptr;
+	}
+};
+
+int factorial(int n) {
+	if (n == 1 || n == 0)
+		return 1;
+	else{
+		int temp = 1;
+		while (n > 0) {
+			temp *= n;
+			n--;
+		}
+		return temp;
+	}
+}
+void input(int& n) {
+	cout << "How many numbers do you want to check? "; cin >> n;
+}
+void fillArray(num* pArray, int n, int i = 0) {
+	if (i < n) {
+		*(pArray + i)->square = i * i;
+		*(pArray + i)->cube = i * i * i;
+		*(pArray + i)->square = factorial(i);
+		i++;
+		fillArray(pArray, n, i);
+	}
+}
+void printArray(num* pArray, int n) {
+	for (int i = 0; i < n; i++) {
+		cout << i << "^2 = " << *(pArray + i)->square << '\t';
+		cout << i << "^3 = " << *(pArray + i)->cube << '\t';
+		cout << i << "! = " << *(pArray + i)->factorial << '\n';
+	}
+}
+void main() {
+	int n;
+	input(n);
+	num* pArray = new num[n];
+	fillArray(pArray, n);
+	printArray(pArray, n);
+
+	delete[] pArray;
+	pArray = nullptr;
+	system("pause>nul");
+}
