@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 struct num {
@@ -21,7 +22,9 @@ struct num {
 };
 
 int factorial(int n) {
-	if (n == 1 || n == 0)
+	if (n > 16)
+		return 0;
+	else if (n == 1 || n == 0)
 		return 1;
 	else{
 		int temp = 1;
@@ -37,18 +40,21 @@ void input(int& n) {
 }
 void fillArray(num* pArray, int n, int i = 0) {
 	if (i < n) {
-		*(pArray + i)->square = i * i;
-		*(pArray + i)->cube = i * i * i;
-		*(pArray + i)->square = factorial(i);
+		*(pArray + i)->square = pow(i, 2);
+		*(pArray + i)->cube = pow(i, 3);
+		*(pArray + i)->factorial = factorial(i);
 		i++;
 		fillArray(pArray, n, i);
 	}
 }
 void printArray(num* pArray, int n) {
 	for (int i = 0; i < n; i++) {
-		cout << i << "^2 = " << *(pArray + i)->square << '\t';
-		cout << i << "^3 = " << *(pArray + i)->cube << '\t';
-		cout << i << "! = " << *(pArray + i)->factorial << '\n';
+		cout << i << " ^ 2 = " << *(pArray + i)->square << '\t';
+		cout << i << " ^ 3 = " << *(pArray + i)->cube << '\t';
+		if (*(pArray + i)->factorial == 0)
+			cout << i << "! = Overflow \n";
+		else
+			cout << i << "! = " << *(pArray + i)->factorial << '\n';
 	}
 }
 void main() {
