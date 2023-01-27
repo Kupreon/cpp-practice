@@ -43,7 +43,7 @@ void printArray(footballer**& pArray, int teams, int players) {
 	}
 }
 void deallocation(footballer**& pArray, int teams) {
-	for (int i = 0; i <= teams; i++)
+	for (int i = 0; i < teams; i++)
 		delete[] * (pArray + 1);
 	delete[] pArray;
 	pArray = nullptr;
