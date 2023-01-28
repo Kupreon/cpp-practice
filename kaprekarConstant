@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int reverse(int num) {
+	int temp = 0;
+	while (num > 0) {
+		temp *= 10;
+		temp += num % 10;
+		num /= 10;
+	}
+	return temp;
+}
+int sorting(int num) {
+	int array[4];
+	for (int i = 0; i < 4; i++) {
+		array[i] = num % 10;
+		num /= 10;
+	}
+	sort(array, array + 4);
+	int newNum = 0;
+
+	for (int j = 0; j < 4; j++) {
+		newNum *= 10;
+		newNum += array[j];
+	}
+
+	newNum = reverse(newNum);
+	while (newNum < 1000)
+		newNum *= 10;
+
+	return newNum;
+}
+void kaprekar(int num) {
+	int newNum = num;
+	int counter = 0;
+	do {
+		num = newNum;
+		newNum = sorting(num) - reverse(sorting(num));
+		cout << sorting(num) << " - " << reverse(sorting(num)) << " = " << newNum << '\n';
+		counter++;
+	} while (num != newNum);
+	cout << "\n The Kaprekar constant is " << newNum << " and it was reached within " << counter << " iterations.";
+}
+int main() {
+	int num;
+	cout << "Enter n: "; cin >> num;
+
+	kaprekar(num);
+
+	system("pause>nul");
+	return 0;
+}
