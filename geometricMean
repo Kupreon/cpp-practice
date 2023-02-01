@@ -3,7 +3,7 @@
 using namespace std;
 
 void scan(float &n) {
-	cout << "Enter N: "; cin >> n;
+	cout << "Enter n: "; cin >> n;
 }
 void calculation(float n, float &a) {
 	for (int i = 1; i <= n; i++) {
