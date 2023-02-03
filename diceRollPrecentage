@@ -6,7 +6,7 @@ void main() {
 
 	int n, temp = 0, one = 0, two = 0, three = 0, four = 0, five = 0, six = 0;
 	do {
-		cout << "How many times do you want to throw the dice? "; cin >> n;
+		cout << "How many times do you want the dice to be thrown? "; cin >> n;
 		if (n <= 10 || n >= 1000)
 			cout << "You have to enter a number between 10 and 1000. \n";
 	} while (n <= 10 || n >= 1000);
