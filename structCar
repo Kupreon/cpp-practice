@@ -49,7 +49,7 @@ void comparison(car* pArray, int s) {
 			strongest = i;
 		}
 	}
-	cout << "\n The most powerful car is the " << *(pArray + strongest)->name << " and it has " << max << " horse power.";
+	cout << "\n The most powerful car is the " << *(pArray + strongest)->name << " and it has " << max << " horse power. ";
 }
 int main() {
 	int s;
