@@ -1,0 +1,88 @@
+#include <iostream>
+
+using namespace std;
+
+struct piece {
+	int ID;
+	char* name;
+	float* height;
+	piece() {
+		ID = 0;
+		name = new char[10];
+		height = new float;
+	}
+	~piece() {
+		delete[] name;
+		name = nullptr;
+
+		delete height;
+		height = nullptr;
+	}
+};
+
+void input(int& rows, int& cols) {
+	cout << "How many rows do you want? "; cin >> rows;
+	cout << "How many columns do you want? "; cin >> cols;
+}
+void allocation(piece** array, int rows, int cols) {
+	cin.ignore();
+	for(int i = 0; i < rows; i++)
+		for (int j = 0; j < cols; j++) {
+			(*(array + i) + j)->ID = rand() % 10000 + 100;
+			cout << "Enter the name of the piece: "; cin.getline(((*(array + i) + j))->name, 10);
+			*(*(array + i) + j)->height = rand() % 100 + 1;
+		}
+}
+void print(piece** array, int rows, int cols) {
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < cols; j++) {
+			cout << "\n ID: " << (*(array + i) + j)->ID;
+			cout << "\t Name: " << (*(array + i) + j)->name;
+			cout << "\t Height: " << *(*(array + i) + j)->height;
+		}
+}
+float* averageHeight(piece** array, int rows, int cols) {
+	int counter = 0;
+	float average = 0.0f;
+
+	for (int i = 0; i < rows; i++)
+		for (int j = 0; j < cols; j++)
+			if (i + j >= rows - 1 && (i + j) % 2 == 0) {
+				average += *(*(array + i) + j)->height;
+				counter++;
+			}
+
+	if (counter != 0)
+		average /= 10;
+
+	return new float(average);
+}
+void deallocation(piece**& array, int rows) {
+	for (int i = 0; i < rows; i++)
+		delete[] * (array + i);
+
+	delete[] array;
+	array = nullptr;
+}
+int main() {
+	srand(time(NULL));
+	int rows, cols;
+	input(rows, cols);
+
+	piece** array = new piece * [rows];
+	for (int i = 0; i < rows; i++) 
+		*(array + i) = new piece[cols];
+	
+	allocation(array, rows, cols);
+	print(array, rows, cols);
+
+	float* ptrAverageHeight = averageHeight(array, rows, cols);
+	cout << "\n The memory location with the average height of pieces on the black tiles of the secondary diagonal is " << ptrAverageHeight;
+	cout << " and the height is " << *ptrAverageHeight;
+
+	delete ptrAverageHeight;
+	ptrAverageHeight = nullptr;
+	deallocation(array, rows);
+	system("pause>nul");
+	return 0;
+}
