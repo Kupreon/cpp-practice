@@ -21,7 +21,7 @@ struct piece {
 };
 
 void input(int& rows, int& cols) {
-	cout << "How many rows do you want? "; cin >> rows;
+	cout << "How many rows do you want?  "; cin >> rows;
 	cout << "How many columns do you want? "; cin >> cols;
 }
 void allocation(piece** array, int rows, int cols) {
