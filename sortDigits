@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int sortedNum(int num) {
+	int temp = num;
+	int sortedNum = 0;
+	for (int i = 9; i >= 0; i--) {
+		temp = num;
+		while (temp > 0) {
+			if (temp % 10 == i) {
+				sortedNum *= 10;
+				sortedNum += i;
+			}
+			temp /= 10;
+		}
+	}
+	return sortedNum;
+}
+int main() {
+	int num;
+	cout << "Enter a number: "; cin >> num;
+	cout << sortedNum(num);
+
+	system("pause>nul");
+	return 0;
+}
