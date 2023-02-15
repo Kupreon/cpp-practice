@@ -3,7 +3,7 @@
 using namespace std;
 
 void input(int& n) {
-	cout << "Enter the size of the array:  "; cin >> n;
+	cout << "Enter the size of the array: "; cin >> n;
 }
 void fillArray(int* pArray, int& n, int i = 1) {
 	*(pArray + i) = pow(i, 3);
