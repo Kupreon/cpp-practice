@@ -3,7 +3,7 @@ using namespace std;
 
 void unos(int& n) {
 	do {
-		cout << "Unesi n: "; cin >> n;
+		cout << "Unesi N: "; cin >> n;
 		if (n < 10 || n > 1000)
 			cout << "10 <= n <= 1000 \n";
 	} while (n < 10 || n > 1000);
