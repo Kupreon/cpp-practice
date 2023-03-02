@@ -3,7 +3,7 @@
 using namespace std;
 
 void scan(double& n, double& x) {
-	cout << "Enter a natural number n: "; cin >> n;
+	cout << "Enter a natural number n:  "; cin >> n;
 	cout << "Enter x: "; cin >> x;
 }
 void sum(double n, double x, double& s) {
