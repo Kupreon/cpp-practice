@@ -3,7 +3,7 @@ using namespace std;
 
 void scan(int &num, int temp = 1) {
 	do {
-		cout << "Enter a digit: "; cin >> temp;
+		cout << "Enter a digit:  "; cin >> temp;
 		if (temp >= 10)
 			cout << "The entered value you've is not valid! \n";
 		else if (temp > 0) 
