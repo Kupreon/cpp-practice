@@ -1,0 +1,129 @@
+#include <iostream>
+using namespace std;
+
+struct vozilo {
+	char* markaVozila;
+	char* brojSasije;
+	char* tipVozila;
+	int* kubnihCM;
+	vozilo() {
+		markaVozila = new char[10];
+		brojSasije = new char[15];
+		tipVozila = new char;
+		kubnihCM = new int;
+	}
+	~vozilo() {
+		delete[] markaVozila;
+		markaVozila = nullptr;
+
+		delete[] brojSasije;
+		brojSasije = nullptr;
+
+		delete tipVozila;
+		tipVozila = nullptr;
+
+		delete kubnihCM;
+		kubnihCM = nullptr;
+	}
+};
+void unos(vozilo** niz, int redovi, int kolone) {
+	for (int i = 0; i < redovi; i++) {
+		for (int j = 0; j < kolone; j++) {
+			cout << i + 1 << "# firma, " << j + 1 << "# vozilo: \n";
+			cin.ignore();
+			cout << "Marka: "; cin.getline((*(niz + i) + j)->markaVozila, 10);
+			cout << "Broj Sasije: "; cin.getline((*(niz + i) + j)->brojSasije, 15);
+
+			do {
+				cout << "Tip(A,B,C): "; cin >> *(*(niz + i) + j)->tipVozila;
+			} while (*(*(niz + i) + j)->tipVozila != 'A' && *(*(niz + i) + j)->tipVozila != 'B' && *(*(niz + i) + j)->tipVozila != 'C');
+
+			cout << "Kubikaza: "; cin >> *(*(niz + i) + j)->kubnihCM;
+			cout << '\n';
+		}
+		cout << "\n \n";
+	}
+}
+void ispis(vozilo** niz, int redovi, int kolone) {
+	for (int i = 0; i < redovi; i++) {
+		cout << i + 1 << "# firma: ";
+		for (int j = 0; j < kolone; j++) {
+			cout << '\n' << j + 1 << "# vozilo: ";
+			cout << "\t Marka: " << (*(niz + i) + j)->markaVozila;
+			cout << "\t BS: " << (*(niz + i) + j)->brojSasije;
+			cout << "\t Tip: " << *(*(niz + i) + j)->tipVozila;
+			cout << "\t Kubikaza: " << *(*(niz + i) + j)->kubnihCM;
+		}
+		cout << "\n \n";
+	}
+}
+void najvecaKubikaza(vozilo** niz, int redovi, int kolone) {
+	float* pomocni = new float[redovi];
+
+	for (int i = 0; i < redovi; i++) {
+		for (int j = 0; j < kolone; j++) {
+			*(pomocni + i) += *(*(niz + i) + j)->kubnihCM;
+		}
+		*(pomocni + i) /= kolone;
+	}
+
+	int kMax = 0;
+	for (int i = 0; i < redovi; i++) {
+		if (*(pomocni + i) > *(pomocni + kMax))
+			kMax = i;
+	}
+
+	cout << "Firma " << kMax + 1 << "# ima najvecu prosjecnu kubikazu. \n";
+
+	delete[] pomocni;
+	pomocni = nullptr;
+}
+void prosjecneKubikazeAB(vozilo** niz, int redovi, int kolone) {
+	float prosjekA = 0;
+	float prosjekB = 0;
+	int a = 0, b = 0;
+
+	for(int i = 0; i < redovi; i++) {
+		for (int j = 0; j < kolone; j++) {
+			if (*(*(niz + i) + j)->tipVozila == 'A') {
+				prosjekA += *(*(niz + i) + j)->kubnihCM;
+				a++;
+			}
+			if (*(*(niz + i) + j)->tipVozila == 'B') {
+				prosjekB += *(*(niz + i) + j)->kubnihCM;
+				b++;
+			}
+		}
+	}
+
+	cout << "Prosjecna kubikaza vozila A kategorije iznosi: " << prosjekA / a << "ccm. \n";
+	cout << "Prosjecna kubikaza vozila B kategorije iznosi: " << prosjekB / b << "ccm. \n";
+}
+void dealokacija(vozilo**& niz, int redovi) {
+	for (int i = 0; i < redovi; i++) {
+		delete[] * (niz + i);
+		*(niz + i) = nullptr;
+	}
+
+	delete[] niz;
+	niz = nullptr;
+}
+int main() {
+	int redovi, kolone;
+	cout << "Redovi: "; cin >> redovi;
+	cout << "Kolone: "; cin >> kolone;
+
+	vozilo** niz = new vozilo * [redovi];
+	for (int i = 0; i < redovi; i++) 
+		*(niz + i) = new vozilo[kolone];
+
+	unos(niz, redovi, kolone);
+	system("cls");
+	ispis(niz, redovi, kolone);
+	najvecaKubikaza(niz, redovi, kolone);
+	prosjecneKubikazeAB(niz, redovi, kolone);
+	
+	dealokacija(niz, redovi);
+	system("pause>nul");
+	return 0;
+}
