@@ -1,5 +1,4 @@
 #include <iostream>
-#include <windows.h>
 using namespace std;
 
 class date {
@@ -35,8 +34,6 @@ public:
 };
 
 int main() {
-	system("color 70");
-
 	int day = 0, month = 0, year = 0 , days = 0;
 	cout << "Enter the starting date: "; cin >> day, cin >> month, cin >> year;
 	cout << "How many days do you want: "; cin >> days;
